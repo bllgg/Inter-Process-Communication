@@ -207,18 +207,18 @@ int main(int argc, char* argv[]) {
 
             if (cmds[1] == "REPORT") {
                 nRetValue = 0;
-                std::string report = "00;REPORT;";
-                const char* constChar = report.c_str();
+                std::wstring report(L"00;REPORT;");
+                const wchar_t* wCharCommand = report.c_str();
 
                 // Sends the results to the shared memory
-                CopyMemory((PVOID)pBufSend, constChar, sizeof(char) * report.length());
+                CopyMemory((PVOID)pBufSend, wCharCommand, sizeof(wchar_t) * report.length());
             }
             else {
-                std::string report = "00;INVCMD";
-                const char* constChar = report.c_str();
+                std::wstring report(L"00;INVCMD");
+                const wchar_t* wCharCommand = report.c_str();
 
                 // Sends the results to the shared memory
-                CopyMemory((PVOID)pBufSend, constChar, sizeof(char) * report.length());
+                CopyMemory((PVOID)pBufSend, wCharCommand, sizeof(wchar_t) * report.length());
             }
 
             break;

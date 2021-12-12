@@ -4,6 +4,7 @@
 #include <tchar.h>
 #include <string>
 #include <iostream>
+#include < stdlib.h >
 
 #define BUF_SIZE 256
 
@@ -89,18 +90,18 @@ int main() {
     {
     std::cout << "Enter the command: ";
         // User input
-        std::string message;
-        std::getline(std::cin, message);
+        std::wstring message;
+        std::getline(std::wcin, message);
 
         // String to const char conversion
-        const char* constChar = message.c_str();
+        const wchar_t* wCharCommand = message.c_str();
 
         // Send command to shared memory
-        CopyMemory((PVOID)pBufSend, constChar, sizeof(char) * message.length());
+        CopyMemory((PVOID)pBufSend, wCharCommand, sizeof(wchar_t) * message.length());
 
         if (console_output) {
-            std::cout << "Sending message: " << message << std::endl;
-            std::cout << "Sending message char: " << constChar << std::endl;
+            std::wcout << "Sending message: " << message << std::endl;
+            std::wcout << "Sending message char: " << wCharCommand << std::endl;
             std::cout << *pBufSend << std::endl;
         }
 
